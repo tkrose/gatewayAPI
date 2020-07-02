@@ -1,2 +1,2 @@
 # gatewayAPI
-A sample gateway API in preparation for OpenProv
+A sample gateway API deployable on OpenShift in preparation for OpenProv
