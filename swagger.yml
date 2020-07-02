@@ -1,12 +1,12 @@
 swagger: "2.0"
 info:
   description: This is the swagger file that goes with our server code
-  version: "1.0.0"
+  version: "1"
   title: Swagger ReST Article
 consumes:
-  - application/json
+  - application/yml
 produces:
-  - application/json
+  - application/yml
 
 basePath: /api
 
@@ -34,49 +34,87 @@ paths:
         200:
           description: Successfully read requirements list operation
           schema:
-            type: array
+            type: array #provision
             items:
               properties:
-                fname:
-                  type: string
-                lname:
-                  type: string
-                timestamp:
-                  type: string
+                0:
+                  type: array
+                  items:
+                    properties:
+                      name:
+                        type: string
+                      role:
+                        type: string
+                      provider:
+                        type: array
+                        items:
+                          properties:
+                            name:
+                              type: string
+                            credential:
+                              type: string
+                            image:
+                              type: string
+                            flavor:
+                              type: string
+                            networks:
+                              type: string
+                            floating_ip_pool:
+                              type: string
+                            keypair:
+                              type: string
+                      ansible_params:
+                        type: array
+                        items:
+                          properties:
+                            ansible_user:
+                              type: string
+                            ansible_ssh_private_key_file:
+                              type: string
+                1:
+                  type: array
+                  items:
+                    properties:
+                      name:
+                        type: string
+                      role:
+                        type: string
+                      provider:
+                        type: array
+                        items:
+                          properties:
+                            name:
+                              type: string
+                            credential:
+                              type: string
+                            image:
+                              type: string
+                            flavor:
+                              type: string
+                            networks:
+                              type: string
+                            floating_ip_pool:
+                              type: string
+                            keypair:
+                              type: string
+                      ansible_params:
+                        type: array
+                        items:
+                          properties:
+                            ansible_user:
+                              type: string
+                            ansible_ssh_private_key_file:
+                              type: string
 
-    post:
-      operationId: requirements.create
-      tags:
-        - Requirements
-      summary: Create an element and add it to the requirements list
-      description: Create a new element in the requirements list
-      parameters:
-        - name: element
-          in: body
-          description: Element to create
-          required: True
-          schema:
-            type: object
-            properties:
-              fname:
-                type: string
-                description: First name of element to create
-              lname:
-                type: string
-                description: Last name of element to create
-      responses:
-        201:
-          description: Successfully created element in list
-
-  /requirements/{lname}:
+  /requirements/{container}:
     get:
       operationId: requirements.read_one
       tags:
         - Requirements
-      summary: Read one element from the requirements list
-      description: Read one element from the requirements list
+      summary: Read one set of requirements (container) from the requirements list
+      description: Read one set of requirements (container) from the requirements list
       parameters:
-        - name: lname
+        - name: container
           in: path
           description: Last name of the element to get from the list
           type: string
@@ -85,10 +123,36 @@ paths:
         200:
           description: Successfully read element from requirements list operation
           schema:
-            properties:
-              fname:
-                type: string
-              lname:
-                type: string
-              timestamp:
-                type: string
+            type: array
+            items:
+              properties:
+                name:
+                  type: string
+                role:
+                  type: string
+                provider:
+                  type: array
+                  items:
+                    properties:
+                      name:
+                        type: string
+                      credential:
+                        type: string
+                      image:
+                        type: string
+                      flavor:
+                        type: string
+                      networks:
+                        type: string
+                      floating_ip_pool:
+                        type: string
+                      keypair:
+                        type: string
+                ansible_params:
+                  type: array
+                  items:
+                    properties:
+                      ansible_user:
+                        type: string
+                      ansible_ssh_private_key_file:
+                        type: string
