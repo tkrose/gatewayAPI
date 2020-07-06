@@ -1,0 +1,28 @@
+{
+  "requirements": {
+     "baremetal": {
+        "name": "baremetal-node",
+        "role": "node",
+        "provider": {
+           "name": "baremetal",
+           "credential": "baremetal-creds",
+           "image": "rhel-7.5-server-x86_64-released",
+           "networks": [
+              "{{ network }}"
+           ]
+        }
+     },
+     "virtual-machine": {
+        "name": "virtual-machine-node",
+        "role": "node",
+        "provider": {
+           "name": "virtual-machine",
+           "credential": "virtual-machine-creds",
+           "image": "rhel-7.5-server-x86_64-released",
+           "networks": [
+              "{{ network }}"
+           ]
+        }
+     }
+  }
+}
