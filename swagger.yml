@@ -4,108 +4,14 @@ info:
   version: "1"
   title: Swagger ReST Article
 consumes:
-  - application/yml
+  - application/json
 produces:
-  - application/yml
+  - application/json
 
-basePath: /api
+# basePath: /api
 
 # Paths supported by the server application
 paths:
-  /requirements:
-    get:
-      operationId: requirements.read_all
-      tags:
-        - Requirements
-      summary: Read the entire list of requirements
-      description: Read the list of requirements
-      parameters:
-        - name: length
-          in: query
-          type: integer
-          description: Number of requirements to get from Requirements
-          required: false
-        - name: offset
-          in: query
-          type: integer
-          description: Offset from beginning of list where to start gathering requirements
-          required: false
-      responses:
-        200:
-          description: Successfully read requirements list operation
-          schema:
-            type: array #provision
-            items:
-              properties:
-                0:
-                  type: array
-                  items:
-                    properties:
-                      name:
-                        type: string
-                      role:
-                        type: string
-                      provider:
-                        type: array
-                        items:
-                          properties:
-                            name:
-                              type: string
-                            credential:
-                              type: string
-                            image:
-                              type: string
-                            flavor:
-                              type: string
-                            networks:
-                              type: string
-                            floating_ip_pool:
-                              type: string
-                            keypair:
-                              type: string
-                      ansible_params:
-                        type: array
-                        items:
-                          properties:
-                            ansible_user:
-                              type: string
-                            ansible_ssh_private_key_file:
-                              type: string
-                1:
-                  type: array
-                  items:
-                    properties:
-                      name:
-                        type: string
-                      role:
-                        type: string
-                      provider:
-                        type: array
-                        items:
-                          properties:
-                            name:
-                              type: string
-                            credential:
-                              type: string
-                            image:
-                              type: string
-                            flavor:
-                              type: string
-                            networks:
-                              type: string
-                            floating_ip_pool:
-                              type: string
-                            keypair:
-                              type: string
-                      ansible_params:
-                        type: array
-                        items:
-                          properties:
-                            ansible_user:
-                              type: string
-                            ansible_ssh_private_key_file:
-                              type: string
-
   /requirements/{container}:
     get:
       operationId: requirements.read_one
@@ -140,19 +46,76 @@ paths:
                         type: string
                       image:
                         type: string
-                      flavor:
-                        type: string
                       networks:
                         type: string
-                      floating_ip_pool:
-                        type: string
-                      keypair:
-                        type: string
-                ansible_params:
+    post:
+      operationId: requirements.send_one
+      tags:
+        - Requirements
+      summary: Post a single set of requirements
+      description: Post a single set of requirements
+      parameters:
+        - name: container
+          in: path
+          description: Last name of the element to get from the list
+          type: string
+          required: True
+      responses:
+        201:
+          description: Successfully posted requirement
+          schema:
+            type: array
+            items:
+              properties:
+                name:
+                  type: string
+                role:
+                  type: string
+                provider:
                   type: array
                   items:
                     properties:
-                      ansible_user:
+                      name:
                         type: string
-                      ansible_ssh_private_key_file:
+                      credential:
                         type: string
+                      image:
+                        type: string
+                      networks:
+                        type: string
+  /requirements:
+    post:
+      operationId: requirements.send_all
+      tags:
+        - Requirements
+      summary: Post the entire requirements list
+      description: Post the entire requirements list
+      responses:
+        201:
+          description: Successfully posted requirements
+          schema:
+            type: array
+            items:
+              properties:
+                name:
+                  type: string
+                role:
+                  type: string
+                provider:
+                  type: array
+                  items:
+                    properties:
+                      name:
+                        type: string
+                      credential:
+                        type: string
+                      image:
+                        type: string
+                      networks:
+                        type: string
+  
+# Added by API Auto Mocking Plugin
+host: virtserver.swaggerhub.com
+basePath: /tkrose25/gateway/1
+schemes:
+ - https
