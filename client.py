@@ -3,7 +3,7 @@ import requests
 from flask import make_response, abort
 
 # Data to serve with our API
-requirements= {
+requirements = {
     "baremetal": {
         "name": "baremetal-node",
         "role": "node",
@@ -30,11 +30,8 @@ requirements= {
     }
   }
 
+#read in the json and turn json into a string
+requirements = str(json.loads("requirements.json"))
 
-# Responds to a request for /api/peoplevwith the complete lists of people (json string of list of people)
-def send_all():
-    #read in the json and turn json into a string
-    requirements = str(json.loads("requirements.json"))
-
-    #post to gateway
-    return requests.post('https://URLforGW/requirements', data=requirements)
+#post to gateway
+requests.post('https://localhost:8080/requirements', data=requirements)

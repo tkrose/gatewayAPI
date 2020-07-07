@@ -1,5 +1,9 @@
 #accept post
-@app.route('/baremetal', methods=["GET","POST"])
-def send_one(container):
-    if request.method == "POST":
-        reqObj = json.loads(reqList.text)
+from flask import Flask, render_template, make_response, abort
+import connexion
+import requests
+import json
+
+
+def bm_post(bmReq):
+    return reqObj = json.loads(reqList.text)
