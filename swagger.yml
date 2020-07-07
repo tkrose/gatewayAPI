@@ -90,9 +90,11 @@ paths:
         - Requirements
       summary: Post the entire requirements list
       description: Post the entire requirements list
-      responses:
-        201:
-          description: Successfully posted requirements
+      parameters:
+        - name: reqList
+          in: body
+          description: Entire requirements list
+          required: True
           schema:
             type: array
             items:
@@ -113,6 +115,9 @@ paths:
                         type: string
                       networks:
                         type: string
+      responses:
+        201:
+          description: Successfully posted requirements
   
 # Added by API Auto Mocking Plugin
 host: virtserver.swaggerhub.com
