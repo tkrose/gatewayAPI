@@ -12,80 +12,9 @@ produces:
 
 # Paths supported by the server application
 paths:
-  /requirements/{container}:
-    get:
-      operationId: requirements.read_one
-      tags:
-        - Requirements
-      summary: Read one set of requirements (container) from the requirements list
-      description: Read one set of requirements (container) from the requirements list
-      parameters:
-        - name: container
-          in: path
-          description: Last name of the element to get from the list
-          type: string
-          required: True
-      responses:
-        200:
-          description: Successfully read element from requirements list operation
-          schema:
-            type: array
-            items:
-              properties:
-                name:
-                  type: string
-                role:
-                  type: string
-                provider:
-                  type: array
-                  items:
-                    properties:
-                      name:
-                        type: string
-                      credential:
-                        type: string
-                      image:
-                        type: string
-                      networks:
-                        type: string
-    post:
-      operationId: requirements.send_one
-      tags:
-        - Requirements
-      summary: Post a single set of requirements
-      description: Post a single set of requirements
-      parameters:
-        - name: container
-          in: path
-          description: Last name of the element to get from the list
-          type: string
-          required: True
-      responses:
-        201:
-          description: Successfully posted requirement
-          schema:
-            type: array
-            items:
-              properties:
-                name:
-                  type: string
-                role:
-                  type: string
-                provider:
-                  type: array
-                  items:
-                    properties:
-                      name:
-                        type: string
-                      credential:
-                        type: string
-                      image:
-                        type: string
-                      networks:
-                        type: string
   /requirements:
     post:
-      operationId: requirements.send_all
+      operationId: app.gateway.gw_post
       tags:
         - Requirements
       summary: Post the entire requirements list
@@ -118,7 +47,76 @@ paths:
       responses:
         201:
           description: Successfully posted requirements
-  
+  /baremetal:
+    post:
+      operationId: app.baremetal.bm_post
+      tags:
+        - Requirements
+      summary: Receive BM provisioning section
+      description: Receive BM provisioning section
+      parameters:
+        - name: bmReq
+          in: body
+          description: BM provisioning requirement section
+          required: True
+          schema:
+            type: array
+            items:
+              properties:
+                name:
+                  type: string
+                role:
+                  type: string
+                provider:
+                  type: array
+                  items:
+                    properties:
+                      name:
+                        type: string
+                      credential:
+                        type: string
+                      image:
+                        type: string
+                      networks:
+                        type: string
+      responses:
+        201:
+          description: Successfully posted requirements
+  /virtualmachine:
+    post:
+      operationId: app.virtualmachine.vm_post
+      tags:
+        - Requirements
+      summary: Receive the VM provisioning section
+      description: Receive the VM provisioning section
+      parameters:
+        - name: vmReq
+          in: body
+          description: VM provisioning requirement section
+          required: True
+          schema:
+            type: array
+            items:
+              properties:
+                name:
+                  type: string
+                role:
+                  type: string
+                provider:
+                  type: array
+                  items:
+                    properties:
+                      name:
+                        type: string
+                      credential:
+                        type: string
+                      image:
+                        type: string
+                      networks:
+                        type: string
+      responses:
+        201:
+          description: Successfully posted requirements
 # Added by API Auto Mocking Plugin
 host: virtserver.swaggerhub.com
 basePath: /tkrose25/gateway/1
