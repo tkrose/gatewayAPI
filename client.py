@@ -34,4 +34,4 @@ requirements = {
 requirements = str(json.loads("requirements.json"))
 
 #post to gateway
-requests.post('https://localhost:8080/requirements', data=requirements)
+requests.post('https://localhost:8080/api/requirements', data=requirements)
