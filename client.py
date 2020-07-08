@@ -32,7 +32,9 @@ requirements = {
   }
 
 # Read in the json
-requirements = json.dumps("requirements.json")
+with open('requirements.json') as f:
+   fileData = open('requirements.json', 'rb')
+print(type(fileData))
 
 # Post to gateway API
-requests.post('http://localhost:8080/api/requirements', headers=headers, data=requirements)
+requests.post('http://localhost:8080/api/requirements', headers=headers, data=fileData)
