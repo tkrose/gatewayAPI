@@ -3,7 +3,7 @@ import connexion
 import requests
 import json
 
-
+# Receives requirements stanza from gateway.py and prints to terminal
 def bm_post(bmReq):
     print(str(bmReq))
     return "200"
