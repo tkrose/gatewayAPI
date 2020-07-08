@@ -30,8 +30,8 @@ requirements = {
     }
   }
 
-#read in the json and turn json into a string
+# Read in the json and type cast as a string
 requirements = str(json.loads("requirements.json"))
 
-#post to gateway
+# Post to gateway API
 requests.post('https://localhost:8080/api/requirements', data=requirements)
