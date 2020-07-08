@@ -5,4 +5,4 @@ import requests
 
 def vm_post(vmReq):
     print(vmReq)
-    return vmReq
+    return "200"

@@ -1,6 +1,7 @@
 import json
 import requests
 from flask import make_response, abort
+from constants import headers
 
 # Data to serve with our API
 requirements = {
@@ -30,8 +31,8 @@ requirements = {
     }
   }
 
-# Read in the json and type cast as a string
-requirements = str(json.loads("requirements.json"))
+# Read in the json
+requirements = json.dumps("requirements.json")
 
 # Post to gateway API
-requests.post('https://localhost:8080/api/requirements', data=requirements)
+requests.post('http://localhost:8080/api/requirements', headers=headers, data=requirements)

@@ -5,6 +5,5 @@ import json
 
 
 def bm_post(bmReq):
-    json_object = json.loads(bmReq)
-    #print(str(bmReq))
+    print(str(bmReq))
     return "200"
