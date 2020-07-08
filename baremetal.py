@@ -1,7 +1,6 @@
 from flask import Flask, render_template, make_response, abort
 import connexion
 import requests
-import json
 
 # Receives requirements stanza from gateway.py and prints to terminal
 def bm_post(bmReq):
